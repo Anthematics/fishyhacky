@@ -22,5 +22,8 @@
   "homepage": "https://github.com/Anthematics/fishyhacky#readme",
   "dependencies": {
     "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "pg": "^7.4.1"
   }
 }
