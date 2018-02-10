@@ -7,11 +7,9 @@ and it will start.
 In order to connect to postgres, create a file called `db-config.json` formatted as below:
 
   {
-    "db-connection-info": {
-      "user": <postgres username>,
-      "password": <postgres password>,
-      "host": <postgres host>,
-      "port": <postgres port>,
-      "database": "re-port"
-    }
+    "user": <postgres username>,
+    "password": <postgres password>,
+    "host": <postgres host>,
+    "port": <postgres port>,
+    "database": "re-port"
   }
