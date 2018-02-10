@@ -1,0 +1,26 @@
+{
+  "name": "re-port",
+  "version": "1.0.0",
+  "description": "Our port reporting app ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anthematics/fishyhacky.git"
+  },
+  "keywords": [
+    "portreport",
+    "fishhacktoronto"
+  ],
+  "author": "Jason , Blaise , Sakin , Viktorija , Tyler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Anthematics/fishyhacky/issues"
+  },
+  "homepage": "https://github.com/Anthematics/fishyhacky#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
