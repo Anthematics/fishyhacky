@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/Anthematics/fishyhacky#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "pg": "^7.4.1"
   }
 }
