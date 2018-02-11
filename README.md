@@ -92,6 +92,6 @@ For example if you want to send location data for vessel 1, you could write the 
       {"timestamp": '02-10-2018 13:15:00',
       "latitude": 56.2899,
       "longitude": -59.4798}
-  ] }
+      ]}
 
 To hit the `POST` endpoint, you can use Postman. Pick `POST` as the method; enter `localhost:8080/locations` in the url bar; click `Body`, select `raw`, select `JSON (application/json)` from the dropdown, and copy the JSON above into the body. This endpoint should respond with `{ "status": "ok"}` if everything went smoothly, or `{"status": "error"}` if something went wrong.
