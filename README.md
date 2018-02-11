@@ -73,3 +73,25 @@ You now have a server listening on port 8080. The API endpoints are exposed on t
         .
         .
       ] }
+
+`id` is the our own identifier of the vessel (this is different from official vessel id).
+`locations` is an array of location objects.
+`latitude` and `longitude` are the location of the ship at time `timestamp`.
+
+To try out this endpoint, hit `localhost:8080/locations/1` on your browser to get the information for vessel with id 1. You should get a json object as a response.
+
+`POST \locations` accepts a POST request with an `application/json` body. This endpoint saves the location data that you send it to the database. The format for the json body is the same as the format that the `GET` endpoint responds with.
+
+For example if you want to send location data for vessel 1, you could write the following JSON body:
+
+    { "id": <id>,
+      "locations": [
+      {"timestamp": '02-10-2018 13:00:00',
+      "latitude": 56.2769,
+      "longitude": -59.4498},
+      {"timestamp": '02-10-2018 13:15:00',
+      "latitude": 56.2899,
+      "longitude": -59.4798}
+  ] }
+
+To hit the `POST` endpoint, you can use Postman. Pick `POST` as the method; enter `localhost:8080/locations` in the url bar; click `Body`, select `raw`, select `JSON (application/json)` from the dropdown, and copy the JSON above into the body. This endpoint should respond with `{ "status": "ok"}` if everything went smoothly, or `{"status": "error"}` if something went wrong.
