@@ -8,12 +8,12 @@ const dbHost = dbConfig["host"]
 const dbPort = dbConfig["port"]
 const dbName = dbConfig["database"]
 
-const conString = 'postgres://'
-                  + dbUser + ":"
-                  + dbPassword + "@"
-                  + dbHost + ":"
-                  + dbPort + "/"
-                  + dbName;
+const conString = 'postgres://' +
+                  dbUser + ":" +
+                  dbPassword + "@" +
+                  dbHost + ":" +
+                  dbPort + "/" +
+                  dbName;
 
 const client = new pg.Client(conString);
 client.connect();
@@ -22,13 +22,26 @@ const app = express();
 
 app.get('/', function (req, res) {
   res.send('Hello Viktorija!');
-  client.query('INSERT INTO test(id) VALUES(4)');
 });
 
-app.get('/location', function(req, res) {
-  res.send('Location');
+app.get('/locations/:id', function(req, res) {
+  res.json(
+    {
+      "id": req.params.id,
+      "locations": [
+        {
+          "timestamp": 1,
+          "lat": 1,
+          "long": 1
+        },
+        {
+          "timestamp": 2,
+          "lat": 1,
+          "long": 1
+        }
+      ]
+    })
 })
-
 
 app.listen(8080, function () {
   console.log('Port reportapp listening on port 8080!');
