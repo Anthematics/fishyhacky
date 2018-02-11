@@ -64,7 +64,7 @@ You now have a server listening on port 8080. The API endpoints are exposed on t
 
 `GET /locations/{id}` responds with a JSON object formatted like this
 
-    { "id": <id>,
+    { "id": 1,
       "locations": [
         {"timestamp": <mm-dd-yyyy hh:mm:ss>,
         "latitude": <latitude>,
