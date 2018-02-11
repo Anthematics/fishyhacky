@@ -20,27 +20,32 @@ client.connect();
 
 const app = express();
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.send('Hello Viktorija!');
 });
 
-app.get('/locations/:id', function(req, res) {
-  res.json(
-    {
-      "id": req.params.id,
-      "locations": [
-        {
-          "timestamp": 1,
-          "lat": 1,
-          "long": 1
-        },
-        {
-          "timestamp": 2,
-          "lat": 1,
-          "long": 1
-        }
-      ]
-    })
+app.get('/locations/:id', (req, res) => {
+  const queryString = 'SELECT vessel_id, timestamp, latitude, longitude ' +
+                'FROM vessel_location ' +
+                'WHERE vessel_id = $1';
+  const values = [req.params.id];
+
+
+
+  client.query(queryString, values, (err, result) => {
+    rows = result.rows;
+    locations = [];
+    for (var i = 0; i < rows.length; i++) {
+      locations.push({
+        timestamp: rows[i]["timestamp"],
+        latitude: rows[i]["latitude"],
+        longitude: rows[i]["longitude"]
+      })
+    }
+
+    res.json({"id": req.params.id, "locations": locations});
+
+  })
 })
 
 app.listen(8080, function () {
