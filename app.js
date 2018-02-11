@@ -2,6 +2,7 @@ const express = require('express');
 const pg = require('pg');
 const dbConfig = require('./db-config.json');
 const bodyParser = require("body-parser");
+const format = require('pg-format');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -23,8 +24,6 @@ const conString = 'postgres://' +
 const client = new pg.Client(conString);
 client.connect();
 
-
-
 app.get('/', (req, res) => {
   res.send('Hello Viktorija!');
 });
@@ -45,33 +44,27 @@ app.get('/locations/:id', (req, res) => {
         longitude: rows[i]["longitude"]
       })
     }
-
     res.json({"id": req.params.id, "locations": locations});
-
   })
 })
 
 app.post('/locations',function(req,res){
-   const id = req.body.id;
-   const locations = req.body.locations;
+  const id = req.body.id;
+  const locations = req.body.locations;
+  let values = [];
+  for (var i = 0; i < locations.length; i++) {
+    values.push([id, locations[i].timestamp, locations[i].latitude, locations[i].longitude]);
+  }
 
-   console.log(id);
-   console.log(locations);
-
-
-   for (var i = 0; i < locations.length; i++) {
-    const queryString = 'INSERT into vessel_location (vessel_id, timestamp, latitude, longitude) VALUES($1, $2, $3, $4)'
-    const values = [id, locations[i].timestamp, locations[i].latitude, locations[i].longitude];
-
-      client.query( queryString, values,
-
-          function(err, result) {
-              if (err) {
-                  console.log(err);
-              }
-
-          });
+  queryString = format('INSERT into vessel_location (vessel_id, timestamp, latitude, longitude) VALUES %L', values);
+  client.query(queryString, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.json({status: "errror"});
+    } else {
+      res.json({status: "ok"})
     }
+  })
 });
 
 app.listen(8080, function () {
