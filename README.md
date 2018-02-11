@@ -60,9 +60,9 @@ Then to run the server, use the following command
 
     $ node app.js
 
-You now have a server listening on port 8080. The API endpoints are exposed on this port. There are two endpoints to hit: `POST \locations` and `GET \locations\{id}`.
+You now have a server listening on port 8080. The API endpoints are exposed on this port. There are two endpoints to hit: `POST /locations` and `GET /locations/{id}`.
 
-`GET \locations\{id}` responds with a JSON object formatted like this
+`GET /locations/{id}` responds with a JSON object formatted like this
 
     { "id": <id>,
       "locations": [
@@ -80,7 +80,7 @@ You now have a server listening on port 8080. The API endpoints are exposed on t
 
 To try out this endpoint, hit `localhost:8080/locations/1` on your browser to get the information for vessel with id 1. You should get a json object as a response.
 
-`POST \locations` accepts a POST request with an `application/json` body. This endpoint saves the location data that you send it to the database. The format for the json body is the same as the format that the `GET` endpoint responds with.
+`POST /locations` accepts a POST request with an `application/json` body. This endpoint saves the location data that you send it to the database. The format for the json body is the same as the format that the `GET` endpoint responds with.
 
 For example if you want to send location data for vessel 1, you could write the following JSON body:
 
