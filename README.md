@@ -64,7 +64,7 @@ You now have a server listening on port 8080. The API endpoints are exposed on t
 
 `GET /locations/{id}` responds with a JSON object formatted like this
 
-    { "id": 1,
+    { "id": <id>,
       "locations": [
         {"timestamp": <mm-dd-yyyy hh:mm:ss>,
         "latitude": <latitude>,
@@ -84,7 +84,7 @@ To try out this endpoint, hit `localhost:8080/locations/1` on your browser to ge
 
 For example if you want to send location data for vessel 1, you could write the following JSON body:
 
-    { "id": <id>,
+    { "id": 1,
       "locations": [
       {"timestamp": '02-10-2018 13:00:00',
       "latitude": 56.2769,
